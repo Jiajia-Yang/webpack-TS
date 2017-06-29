@@ -29,7 +29,7 @@ h1,h2,h3,h4,h5,h6 {
 font-size:100%; 
 font-weight:normal; 
 } 
- 
+@import '../static/font/iconfont.css';
 @import './index/index';
 @import './creat/creat';
 @import './list/list';

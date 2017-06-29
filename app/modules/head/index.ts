@@ -10,7 +10,7 @@ class Head extends App {
         this.init()
     }
     init() {
-        jQuery(".login").append(headTpl)
+        jQuery("#head").append(headTpl)
        /* var button = Button({
             selecter: ".btn-wrap",
             $: this.$,

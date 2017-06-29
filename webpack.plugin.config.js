@@ -43,7 +43,6 @@ var pageObj = [
     }
 ]
 var pluginArr = []
-pluginArr.push(new OpenBrowserPlugin({ url: 'http://localhost:8080' }))
 pageObj.map((item) => {
     let option = Object.assign({
         inject: true,
@@ -76,6 +75,6 @@ pluginArr.push(
         "window.jQuery": "jquery"
     })
 )
-
+pluginArr.push(new OpenBrowserPlugin({ url: 'http://localhost:8080' }))
 module.exports = pluginArr;
 

@@ -1,7 +1,7 @@
 
 import * as Root from '../../modules/root'
 import '../main.scss'
-import $ from 'jquery'
+
 //import './styles/main'
 //import handlebars from 'handlebars'
 let  body = document.body
@@ -12,10 +12,5 @@ link.setAttribute("rel","stylesheet")
 app.setAttribute("id", "pageOne")
 document.head.appendChild(link)
 body.appendChild(app)
-$.ajax({
-    url: "comment/get.action"
-}).success((data) => {
-    console.log(data)
-})
 new Root.Head();
 new Root.Con();

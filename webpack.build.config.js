@@ -1,9 +1,15 @@
 var webpack = require('webpack');
 var path = path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var CleanWebpackPlugin = require('clean-webpack-plugin');
 var allPlugin = require('./webpack.plugin.config');
 
-
+allPlugin.push(new CleanWebpackPlugin(['build'], {
+        root: '', // An absolute path for the root  of webpack.config.js
+        verbose: true,// Write logs to console.
+        dry: false // Do not delete anything, good for testing.
+    })
+)
 module.exports = {
     entry: {
         index: './app/entry/index/index.js',
@@ -15,7 +21,7 @@ module.exports = {
         vendor: ['handlebars',"jquery"]
     },
     output: {
-        path: __dirname + '/dist', 
+        path: __dirname + '/build', 
         filename: '[name].js'
     },
     devServer: {
@@ -45,7 +51,7 @@ module.exports = {
             { test: /\.ts/, use: 'ts-loader', exclude: /node_modules/ },
             { test: /\.handlebars$/, use: 'handlebars-loader' },
             { test: /\.html$/, use: 'html-withimg-loader' },
-            { test: /\.(png|jpg|gif)$/, use: 'url-loader?limit=819200&name=images/[hash:8].[name].[ext]' },
+            { test: /\.(png|jpg|gif)$/, use: 'file-loader?limit=819200&name=images/[hash:8].[name].[ext]' },
             { test: /\.(woff|woff2|svg|eot|ttf)\??.*$/, use: 'file-loader?name=./images/font/[name].[ext]'}
         ]
     },
