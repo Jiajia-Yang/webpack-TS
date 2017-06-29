@@ -1,8 +1,8 @@
 
-import * as Root from '../modules/root'
+import * as Root from '../../modules/root'
+import '../main.scss'
 //import './styles/main'
 //import handlebars from 'handlebars'
-
 let  body = document.body
 let app = document.createElement('div')
 let link = document.createElement('link')
@@ -13,7 +13,8 @@ document.head.appendChild(link)
 body.appendChild(app)
 
 new Root.Head();
-var side = new Root.sideBar();
-side.clickFn()
+new Root.Con();
+//var side = new Root.sideBar();
+//side.clickFn()
 
 //layer.alert('内容')

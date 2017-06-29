@@ -1,27 +1,24 @@
 declare var jQuery: (string) => any;
 import { btnTpl,btnStyle } from './button.js'
-import { Btn } from '../interface'
 
-/*interface Btn {
+class Button{
     selecter: string;
 	name?:string;
 	clickFn:object;
-}*/
-class Button implements Btn{
     constructor(labelledObj) {
-        console.log(labelledObj)
+        this.clickFn = labelledObj.clickFn;
+        this.name = labelledObj.name;
+        this.selecter = labelledObj.selecter;
         this.init()
-        console.log(this.selecter)
     }
-    selecter:"sdd"
-    clickFn(){
-
-    }
+    
     init() {
-        jQuery("#pageOne").append(btnTpl)
+        jQuery(this.selecter).append(btnTpl)
+        jQuery(this.selecter).find(".btn-Wrap").html(this.name).click(this.clickFn)
     }
     
 }
 
-
 export default Button
+
+

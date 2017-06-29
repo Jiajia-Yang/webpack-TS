@@ -1,17 +1,18 @@
 var webpack = require('webpack');
 var path = path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var htmlWebpackPlugin = require('html-webpack-plugin');
-var extractSass = new ExtractTextPlugin({
-    filename: 'main.css',
-    disable: process.env.NODE_ENV === "development"
-});
+var allPlugin = require('./webpack.plugin.config');
+
 
 module.exports = {
     entry: {
-        pageOne: './app/entry/pageOne.js',
-        pageTwo: './app/entry/pageTwo.js',
-        vendor: ['handlebars']
+        index: './app/entry/index/index.js',
+        answer: './app/entry/answer/index.js',
+        creat: './app/entry/creat/index.js',
+        result: './app/entry/result/index.js',
+        user: './app/entry/user/index.js',
+        list: './app/entry/list/index.js',
+        vendor: ['handlebars',"jquery"]
     },
     output: {
         path: __dirname + '/build', 
@@ -21,6 +22,7 @@ module.exports = {
         historyApiFallback: true,
         hot: true,
         inline: true,
+        port: 8080,
         /*proxy: {
           '/api/*': {
               target: 'http://localhost:houduanjiekou',
@@ -38,42 +40,12 @@ module.exports = {
         rules: [
             { test: /\.js$/, loader: 'babel-loader', query: { presets: ['es2015'] }, exclude: /node_modules/ }, 
             { test: /\.css$/, use: ExtractTextPlugin.extract({fallback: 'style-loader', use: 'css-loader'}) },
-            { test: /\.scss$/, use: extractSass.extract({ use: [{ loader: "css-loader",options: { importLoaders: 1 } }, { loader: "sass-loader" }, { loader: "postcss-loader" }],fallback: "style-loader"}) },
+            { test: /\.scss$/, use: ExtractTextPlugin.extract({ use: [{ loader: "css-loader",options: { importLoaders: 1 } }, { loader: "sass-loader" }, { loader: "postcss-loader" }],fallback: "style-loader"}) },
             { test: /\.ts/, use: 'ts-loader', exclude: /node_modules/ },
             { test: /\.handlebars$/, use: 'handlebars-loader' },
             { test: /\.html$/, use: 'raw-loader' },
-            { test: /\.(png|jpg|gif)$/, use: 'url?limit=819200' }
+            { test: /\.(png|jpg|gif)$/, use: 'url-loader?limit=819200&name=images/[name].[ext]' }
         ]
     },
-    plugins: [
-        extractSass,
-        /*new ExtractTextPlugin({
-            filename: 'main.css',
-            disable: false,
-            allChunks: true
-        }),*/
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'vendor',
-            filename: 'vendor.js'
-        }),
-        new htmlWebpackPlugin({
-            title: '这个是最麻烦的页面',
-            filename: "pageTwo.html",
-            inject: true,
-            showErrors: true,
-            chunks:["vendor","pageTwo"]
-        }),
-        new htmlWebpackPlugin({
-            title: '这是第一个页面',
-            filename: "index.html",
-            inject: true,
-            showErrors: true,
-            chunks:["vendor","pageOne"]
-        }),
-        new webpack.ProvidePlugin({
-            $: 'jquery',
-            jQuery: 'jquery',
-            "window.jQuery": "jquery"
-        })
-    ]
+    plugins: allPlugin
 }

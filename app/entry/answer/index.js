@@ -1,7 +1,7 @@
 
-import * as Root from '../modules/root'
-// import './styles/main'
-console.log(Root)
+import * as Root from '../../modules/root'
+import '../main.scss'
+
 
 let  body = document.body
 let app = document.createElement('div')

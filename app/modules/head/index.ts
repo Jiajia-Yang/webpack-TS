@@ -1,6 +1,7 @@
 import App from '../../public/app'
 import {Button} from '../../components/index'
 import { headTpl, headTplStyle } from './head.js'
+declare var jQuery: (string) => any;
 
 class Head extends App {
     constructor() {
@@ -9,6 +10,7 @@ class Head extends App {
         this.init()
     }
     init() {
+        jQuery(".login").append(headTpl)
        /* var button = Button({
             selecter: ".btn-wrap",
             $: this.$,
