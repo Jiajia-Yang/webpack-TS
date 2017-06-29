@@ -1,4 +1,4 @@
-declare var jQuery: (string) => any;
+declare var $: (string) => any;
 import App from '../../public/app'
 import { Button } from '../../components/index'
 import { contentTpl, contentStyle } from './content.js'
@@ -24,7 +24,7 @@ class Con extends App {
         })
     }
     init() {
-       jQuery(".con").append(contentTpl) 
+        $(".con").append(contentTpl) 
     }
 }
 

@@ -1,4 +1,5 @@
 var webpack = require('webpack');
+var path = require('path');
 var htmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var OpenBrowserPlugin = require('open-browser-webpack-plugin');
@@ -8,7 +9,7 @@ var pageObj = [
         title: '首页',
         filename: "index.html",
         template: './app/entry/index/index.html',
-        chunks:["handlebars","jquery","index"]
+        chunks: ["handlebars","jquery","index"]
     },
     {
         title: '创建问卷页',

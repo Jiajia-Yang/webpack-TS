@@ -15,20 +15,21 @@ module.exports = {
         vendor: ['handlebars',"jquery"]
     },
     output: {
-        path: __dirname + '/build', 
+        path: __dirname + '/dist', 
         filename: '[name].js'
     },
     devServer: {
-        historyApiFallback: true,
+        historyApiFallback: true, // 不跳转
         hot: true,
         inline: true,
         port: 8080,
-        /*proxy: {
-          '/api/*': {
-              target: 'http://localhost:houduanjiekou',
-              secure: false
+        proxy: {
+          '/comment/*': {
+                target: 'http://localhost:3000/',
+                changeOrigin: true,
+                secure: false
           }
-        }*/
+        }
     },
     resolve: {
         extensions: ['.js', '.ts','.scss', '.css', '.html','.handlebars']
@@ -43,8 +44,8 @@ module.exports = {
             { test: /\.scss$/, use: ExtractTextPlugin.extract({ use: [{ loader: "css-loader",options: { importLoaders: 1 } }, { loader: "sass-loader" }, { loader: "postcss-loader" }],fallback: "style-loader"}) },
             { test: /\.ts/, use: 'ts-loader', exclude: /node_modules/ },
             { test: /\.handlebars$/, use: 'handlebars-loader' },
-            { test: /\.html$/, use: 'raw-loader' },
-            { test: /\.(png|jpg|gif)$/, use: 'url-loader?limit=819200&name=images/[name].[ext]' }
+            { test: /\.html$/, use: 'html-withimg-loader' },
+            { test: /\.(png|jpg|gif)$/, use: 'url-loader?limit=819200&name=images/[hash:8].[name].[ext]' }
         ]
     },
     plugins: allPlugin
