@@ -6,8 +6,6 @@
   "scripts": {
     "start": "webpack-dev-server --port 8080 --hot --inline --progress --colors --devtool eval",
     "build": "webpack --progress --config ./webpack.build.config.js",
-    "nodemock": "nodemon -w ./mock bin/mock-server.js",
-    "dev": "node build/dev-server.js",
     "mock": "node mock/server.js"
   },
   "repository": {
